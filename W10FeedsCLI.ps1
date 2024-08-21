@@ -6,7 +6,7 @@ if($option -lt 0 -or $option -gt 2) {
     return 1
 }
 #HashData function
-$MethodDefinition = @’
+$MethodDefinition = @'
 
 [DllImport("Shlwapi.dll", CharSet = CharSet.Unicode, ExactSpelling = true, SetLastError = false)]
    public static extern int HashData(
@@ -15,8 +15,8 @@ $MethodDefinition = @’
     byte[] piet,
    int outputLen);
 
-‘@
-$Shlwapi = Add-Type -MemberDefinition $MethodDefinition -Name ‘Shlwapi’ -Namespace ‘Win32’ -PassThru
+'@
+$Shlwapi = Add-Type -MemberDefinition $MethodDefinition -Name 'Shlwapi' -Namespace 'Win32' -PassThru
 #machineId Registry Value
 $machineIdReg = Get-ItemProperty -Path 'HKLM:\SOFTWARE\Microsoft\SQMClient\' -Name 'MachineId' -ErrorAction SilentlyContinue
 $machineId = '{C283D224-5CAD-4502-95F0-2569E4C85074}' #Fallback Value
